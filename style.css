@@ -1,0 +1,540 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inconsolata', 'Monaco', monospace;
+    overflow-x: hidden;
+    margin: 0;
+    color: #a0a2ae;
+    background: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.main-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+
+    background-repeat: no-repeat;
+    background-position: 50% 10em;
+    background-size: 75% auto;
+}
+
+
+/* Buttons */
+
+.btn {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn--search {
+    font-size: 1.5em;
+}
+
+.btn--hidden {
+    pointer-events: none;
+    opacity: 0;
+}
+
+
+/* Reset Search Input */
+
+.search__input {
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+
+.search__input:focus {
+    outline: none;
+}
+
+
+/* Links */
+
+a,
+.btn {
+    text-decoration: none;
+    color: #d17c78;
+    outline: none;
+}
+
+.hidden {
+    position: absolute;
+    overflow-x: hidden;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+
+/* Icons */
+
+.icon {
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 auto;
+    fill: currentColor;
+}
+
+
+
+
+/* Deco lines */
+
+.decolines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.decoline {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: #ddd;
+}
+
+.decoline:first-child {
+    right: 88em;
+}
+
+.decoline:nth-child(2) {
+    right: 68em;
+}
+
+.decoline:nth-child(3) {
+    right: 48em;
+}
+
+.decoline:nth-child(4) {
+    right: 28em;
+}
+
+.decoline:nth-child(5) {
+    right: 8em;
+}
+
+.demo-11 {
+    color: #fff;
+    background-color: #000;
+}
+
+.demo-11 main {
+    background-color: transparent;
+}
+
+.demo-11 a,
+.demo-11 .btn {
+    color: #003cff;
+}
+
+
+/* Layout for search container */
+.search {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3em;
+}
+
+span.green {
+    color: #34fc47;
+}
+
+.js .search {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+.btn--search-close {
+    font-size: 2em;
+    position: absolute;
+    top: 1.25em;
+    right: 1.25em;
+    display: none;
+}
+
+.js .btn--search-close {
+    display: block;
+}
+
+.terminal__line {
+    line-height: 1.25;
+    overflow-x: hidden;
+    width: 0;
+    height: 0;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.search__form::before {
+    content: '>>';
+    font-family: 'Ubuntu Mono';
+}
+
+.search__input {
+    font-family: inherit;
+    height: 40px;
+    display: inline-block;
+    box-sizing: border-box;
+/*    padding: 0.05em 0;*/
+    font-weight: bolder;
+    color: black;
+    width: 50%;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, .6);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    /*	backdrop-filter: opacity(20%);*/
+}
+
+.search__form::before,
+.terminal__line,
+.search__input {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 1.5em;
+}
+
+.search__input::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #4a319e;
+}
+
+.search__input::-moz-placeholder {
+    opacity: 1;
+    /* Mozilla Firefox 19+ */
+    color: #4a319e;
+}
+
+.search__input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #4a319e;
+}
+
+.search__input::-webkit-search-cancel-button,
+.search__input::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+.search__input::-ms-clear {
+    display: none;
+}
+
+/************************/
+/* Transitions 			*/
+/************************/
+
+.js .main-wrap {
+    transition: opacity 0.3s;
+}
+
+.js .main-wrap--hide {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.js .main-wrap--move .btn--search {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.js .search {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.js .search--open {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.js .search--open .terminal.binding .terminal__line {
+    width: 200ch;
+}
+
+.js .search--open .terminal__line:first-child {
+    width: 20ch;
+}
+
+.js .search--open .terminal__line:nth-child(2),
+.js .search--open .terminal__line:nth-child(3) {
+    width: 27ch;
+}
+
+
+.js .search--open .terminal__line {
+    animation: typing 1s steps(30, end), scaleUp 0.1s forwards;
+}
+
+.js .search--open .terminal__line:first-child {
+    animation-timing-function: steps(20, end), ease;
+}
+
+.js .search--open .terminal__line:nth-child(2) {
+    animation-delay: 2s;
+}
+
+.js .search--open .terminal__line:nth-child(3) {
+    animation-delay: 3.35s;
+}
+
+.js .search--open .terminal__line:nth-child(2),
+.js .search--open .terminal__line:nth-child(3) {
+    animation-duration: 1.35s, 0.1s;
+    animation-timing-function: steps(27, end), ease;
+}
+
+
+
+.connecting-dots {
+    position: fixed;
+    background-size: cover;
+    background-position: center center;
+    margin: 0 auto;
+}
+
+canvas {
+    position: absolute;
+    z-index: 1
+}
+
+.home {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    -webkit-animation: move 1s;
+    /* Safari 4+ */
+    -moz-animation: move 1s;
+    /* Fx 5+ */
+    -o-animation: move 1s;
+    /* Opera 12+ */
+    animation: move 1s;
+    /* IE 10+, Fx 29+ */
+}
+
+.home_container {
+	font-family: 'Latin Modern Mono';
+    animation-delay: 1s;
+    -webkit-animation: show 1s;
+    /* Safari 4+ */
+    -moz-animation: show 1s;
+    /* Fx 5+ */
+    -o-animation: show 1s;
+    /* Opera 12+ */
+    animation: show 1s;
+    /* IE 10+, Fx 29+ */
+}
+
+.close_home {
+    padding: 1px 10px 6px 10px;
+    position: absolute;
+    top: 70px;
+    right: 80px;
+    font-size: 30px;
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.home_container h2 {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 3em;
+}
+
+.home_container p {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 2em;
+}
+
+@keyframes move {
+    0% {
+        right: 5000px;
+    }
+
+    30% {
+        right: 2000px;
+    }
+
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes move {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* Type animation by Lea Verou http://lea.verou.me/2012/02/simpler-css-typing-animation-with-the-ch-unit/ */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 1.5em;
+    }
+}
+
+/* Close button */
+.btn--search-close {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.search--open .btn--search-close {
+    opacity: 1;
+}
+
+/* Search form with input and description */
+
+.js .search__form {
+    opacity: 0;
+}
+
+.js .search--open .search__form {
+    opacity: 1;
+    transition: opacity 0.3s 3.35s;
+}
+
+@media screen and (max-width: 40em) {
+    .btn--search-close {
+        font-size: 1.25em;
+    }
+
+    .search {
+        padding: 0.5em;
+    }
+}
+
+@media screen and (max-width: 40em) {
+    .search-wrap {
+        font-size: 0.85em;
+        position: absolute;
+        top: 2.15em;
+        right: 2em;
+    }
+
+    .bottom-nav {
+        padding: 0.5em;
+    }
+
+    .codrops-demos {
+        text-align: center;
+    }
+
+    .codrops-demos a {
+        margin-bottom: 1em;
+    }
+
+    .codrops-demos span {
+        display: block;
+        margin: 0 auto 1em;
+        text-align: center;
+    }
+}
+
+.fridge {
+    border-radius: 25px;
+    border: 2px solid white;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    width: auto;
+    overflow-wrap: break-word;
+    background-color: rgba(142, 186, 39, .4);
+    backdrop-filter: blur(4px);
+}
+
+input[type=file] {
+    background: rgba(99, 120, 119, 0.4);
+    backdrop-filter: blur(10px);
+    float: right;
+    width: 45%;
+/*    right: 10px;*/
+	padding: 5px;
+    border-radius: 10px;
+/*    border: solid 5px #2E3840;*/
+    -webkit-transition: 0.7s;
+    /* Safari */
+    transition: 0.5s;
+    font-size: 1.5em;
+    height: 40px;
+    font-family: 'Ubuntu Mono';
+/*    align-self: right;*/
+}
+
+input[type=file]::file-selector-button {
+/*    margin-right: 20px;*/
+    border: none;
+    background: #084cdf;
+/*    padding: 10px 20px;*/
+	padding: 5px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+    font-family: 'Inter';
+    font-size: 1em;
+
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+}
