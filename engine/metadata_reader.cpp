@@ -29,7 +29,7 @@ int main(){
 	cout << "number of edges          : " << M << '\n';
 	cout << "node with most out degree: " << mx_out << " [out degree: " << mo_sz << "]\n";
 	cout << "node with most in degree : " << mx_in << " [in degree: " << mi_sz << "]\n";
-	cout << "node with most degere    : " << mx_tot << " [total degree: " << mt_sz << "]\n";
+	cout << "node with most degree    : " << mx_tot << " [total degree: " << mt_sz << "]\n";
 	cout << "number of SCC's          : " << scc_count << '\n';
 	cout << "id of largest SCC        : " << large_scc << " [size: " << large_scc_sz << "]\n";
 
