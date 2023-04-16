@@ -19,7 +19,7 @@ node_record retrive(int x){
 		perror("Cannot access file");
 		exit(2);
 	}
-	cerr << "Disk Access " << ++d << '\n';
+	++d;//cerr << "Disk Access " << ++d << '\n';
 	node_record NODE[PERFILENODES];
 	for(int i = 0; i < PERFILENODES; ++i){
 		read(fd, &NODE[i], sizeof(node_record));
@@ -45,6 +45,8 @@ int main(int argc, char ** argv){
 	}else{
 		cout << "the same SCC.\n";
 	}
+
+	cerr << "[" << d << " disk accesses]\n";
 
 	return 0;
 }
